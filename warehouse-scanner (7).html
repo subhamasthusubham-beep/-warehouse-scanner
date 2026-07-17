@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>గోడౌన్ స్కానర్ — Warehouse Scanner</title>
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIldhcmVob3VzZSBTY2FubmVyIC0gR29kb3duIHRvIFN0b3JlIiwgInNob3J0X25hbWUiOiAiV0ggU2Nhbm5lciIsICJzdGFydF91cmwiOiAiLiIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjMTIxNjFBIiwgInRoZW1lX2NvbG9yIjogIiMxMjE2MUEiLCAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFNQUFBQURBQ0FJQUFBRGR2dnRRQUFBQ0gwbEVRVlI0bk8zVTBRbUNZQmhBMFl3MmFJVG1jSWdtYlFySGFJUm1zTmNvQXZWQ0laenpwbnp5L2NMbEgrWnBQTUJXeDM4ZmdIMFRFSW1BU0FSRUlpQVNBWkVJaUVSQUpBSWlFUkNKZ0VnRVJDSWdFZ0dSQ0loRVFDUUNJaEVRaVlCSUJFUWlJQklCa1FpSVJFQWtBaUlSRUltQVNBUkVJaUFTQVpFSWlFUkFKQUlpRVJDSmdFZ0VSQ0lnRWdHUkNJaEVRQ1FDSWhFUWlZQklCRVFpSUJJQmtRaUlSRUFrQWlJUkVJbUFTQVJFSWlBU0FaRUlpRVJBSktmZnJEbGY3NitQajl0bDdlVGIrMC9MSitPMzM0WTMvTlFTbTdlc1hiU05HNGhFUUNRQ0loRVFpWUJJQkVRaUlCSUJrUWlJUkVBa0FpSVJFSW1BU0FSRUlpQVNBWkVJaUVSQUpBSWlFUkNKZ0VnRVJDSWdFZ0dSQ0loRVFDUUNJaEVRaVlCSUJFUWlJQklCa1FpSVJFQWtBaUlSRUltQVNBUkVJaUFTQVpFSWlFUkFKQUlpRVJDSmdFZ0VSQ0lnRWdHUkNJaEVRQ1FDSWhFUWlZQklCRVFpSUJJQmtRaUlSRUFrQWlJUkVJbUFTQVJFSWlBU0FaRUlpRVJBSkFJaUVSQ0pnRWdFUkNJZ0VnR1JDSWhFUUNRQ0loRVFpWUJJaG5rYS8zMEdkc3dOUkNJZ0VnR1JDSWhFUUNRQ0loRVFpWUJJQkVRaUlCSUJrUWlJUkVBa0FpSVJFSW1BU0FSRUlpQVNBWkVJaUVSQUpBSWlFUkNKZ0VnRVJDSWdFZ0dSQ0loRVFDUUNJaEVRaVlCSUJFUWlJQklCa1FpSVJFQWtBaUlSRUltQVNBUkVJaUFTQVpFSWlFUkFKQUlpRVJDSmdFZ0VSQ0lnRWdHUkNJaEVRQ1FDSWhFUWlZQkluaWQ3SUlNS01zU1hBQUFBQUVsRlRrU3VRbUNDIiwgInNpemVzIjogIjE5MngxOTIiLCAidHlwZSI6ICJpbWFnZS9wbmciLCAicHVycG9zZSI6ICJhbnkgbWFza2FibGUifSwgeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFnQUFBQUlBQ0FJQUFBQjdHa090QUFBSFgwbEVRVlI0bk8zWFVRM0NNQlJBVVNBNFFBSTZKZ0tscUVBR0V0QUFEbUQ3R0cxeXovbHU5bDZhSlRjOXZoL0xBWUNlMCtnRkFCaERBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaXpxTVhtTkhsOXZ4KzRIVy8vblBjejRscnZyRFZsNGw3ak50cXFndFpNM0cyZjJadi85OXcvanVaa0JjQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRTlR4L1ZoRzd3REFBRjRBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkQxQVNSNkl3TWFhbjVHQUFBQUFFbEZUa1N1UW1DQyIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiwgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIn1dfQ==" />
+<meta name="theme-color" content="#12161A" />
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAACH0lEQVR4nO3U0QmCYBhA0Yw2aITmcIgmbQrHaIRmsNcoAvVCIZzzpnzy/cLlH+ZpPMBWx38fgH0TEImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJKffrDlf76+Pj9tl7eTb+0/LJ+O334Y3/NQSm7esXbSNG4hEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIhnka/30GdswNRCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBIBEQiIBIBkQiIREAkAiIREImASAREIiASAZEIiERAJAIiERCJgEgERCIgEgGRCIhEQCQCIhEQiYBInid7IIMKMsSXAAAAAElFTkSuQmCC" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="WH Scanner" />
+<meta name="mobile-web-app-capable" content="yes" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/12.15.0/firebase-app-compat.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/12.15.0/firebase-database-compat.min.js"></script>
+<style>
+  :root{
+    --bg:#12161A;
+    --surface:#1B2126;
+    --surface-2:#242B31;
+    --border:#313A40;
+    --accent:#FFC53D;
+    --accent-dark:#E0A62B;
+    --accent-2:#4FA5D8;
+    --text:#ECEDE9;
+    --text-dim:#8FA0A8;
+    --success:#5FCE8F;
+    --danger:#E85D5D;
+    --font-display:"Arial Narrow", "Bahnschrift", "Roboto Condensed", Arial, sans-serif;
+    --font-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --font-mono:"SF Mono","Roboto Mono","Consolas","Courier New",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+  body{min-height:100vh;-webkit-tap-highlight-color:transparent;}
+  .app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);}
+
+  .barcode-stripe{
+    height:22px;
+    background:repeating-linear-gradient(90deg,
+      var(--accent) 0px, var(--accent) 2px,
+      transparent 2px, transparent 5px,
+      var(--accent) 5px, var(--accent) 6px,
+      transparent 6px, transparent 10px,
+      var(--accent) 10px, var(--accent) 13px,
+      transparent 13px, transparent 15px,
+      var(--accent) 15px, var(--accent) 17px,
+      transparent 17px, transparent 20px);
+    opacity:0.9;
+  }
+  .topbar{background:var(--surface);border-bottom:1px solid var(--border);}
+  .topbar-inner{padding:16px 18px 14px;}
+  .topbar h1{
+    font-family:var(--font-display);
+    font-weight:800;
+    letter-spacing:0.5px;
+    font-size:22px;
+    margin:0;
+    color:var(--text);
+    text-transform:uppercase;
+  }
+  .topbar .sub{
+    display:block;
+    font-family:var(--font-body);
+    font-weight:400;
+    text-transform:none;
+    font-size:12.5px;
+    color:var(--text-dim);
+    letter-spacing:0;
+    margin-top:3px;
+  }
+  .tab-row{display:flex;border-top:1px solid var(--border);}
+  .tab-btn{flex:1;background:var(--surface);border:none;color:var(--text-dim);padding:12px;font-size:13.5px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+
+  main{flex:1;padding:14px 16px 90px;}
+  .hidden{display:none !important;}
+
+  section{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px;}
+
+  label{display:block;font-size:12px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;font-weight:600;}
+  label.spaced{margin-top:14px;}
+
+  select, input[type="text"]{
+    width:100%;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:12px 12px;
+    border-radius:8px;
+    font-size:15px;
+    font-family:var(--font-body);
+  }
+  select:focus, input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  select:disabled, input:disabled{opacity:0.5;}
+
+  .store-row{display:flex;gap:8px;}
+  .store-row select{flex:1;}
+  .icon-btn{
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    color:var(--text);
+    width:44px;border-radius:8px;font-size:16px;cursor:pointer;
+  }
+  .icon-btn:active{background:var(--border);}
+
+  .person-row{margin-top:14px;}
+  .person-row input{border-color:var(--accent-2);}
+
+  .manage-stores{margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);}
+  .manage-add-row{display:flex;gap:8px;margin-bottom:10px;}
+  .manage-add-row input{flex:1;}
+  .btn-small{
+    background:var(--accent);color:#1A1400;border:none;padding:0 16px;border-radius:8px;
+    font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap;
+  }
+  .manage-row{display:flex;justify-content:space-between;align-items:center;padding:8px 4px;border-bottom:1px solid var(--border);font-size:14px;}
+  .manage-row:last-child{border-bottom:none;}
+  .manage-row .del-btn{background:none;border:none;color:var(--danger);font-size:16px;cursor:pointer;padding:4px 8px;}
+  .empty.small{color:var(--text-dim);font-size:13px;margin:4px;}
+
+  .scan-row{display:flex;gap:8px;margin-bottom:10px;}
+  .scan-row input{flex:1;font-family:var(--font-mono);letter-spacing:0.5px;}
+  #addBtn{
+    background:var(--accent);color:#1A1400;border:none;width:50px;border-radius:8px;font-size:20px;font-weight:800;cursor:pointer;
+  }
+  #addBtn:disabled{opacity:0.4;}
+
+  .camera-btn{
+    width:100%;background:var(--accent-2);color:#08222E;border:none;padding:12px;border-radius:8px;
+    font-weight:700;font-size:15px;cursor:pointer;margin-bottom:6px;
+  }
+  .camera-btn:disabled{opacity:0.4;}
+  .hint{font-size:12px;color:var(--text-dim);margin:4px 2px 0;line-height:1.4;}
+
+  .last-scan-card{
+    margin-top:12px;padding:14px;border-radius:10px;background:var(--surface-2);
+    border:2px solid var(--success);display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center;
+  }
+  .last-scan-label{font-size:11px;color:var(--success);text-transform:uppercase;letter-spacing:0.6px;font-weight:700;}
+  .last-scan-code{font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--text);letter-spacing:0.5px;word-break:break-all;}
+  .last-scan-qty{font-size:13px;color:var(--text-dim);}
+  .last-scan-card.flash{animation:flashPulse 0.5s ease;}
+  @keyframes flashPulse{
+    0%{background:var(--success);}
+    100%{background:var(--surface-2);}
+  }
+
+  .summary-bar{display:flex;justify-content:space-around;padding:12px 8px;}
+  .stat{text-align:center;}
+  .stat-num{display:block;font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--accent);}
+  .stat-label{display:block;font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+
+  .items-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px;flex-wrap:wrap;}
+  .items-header h2{font-family:var(--font-display);font-size:15px;margin:0;text-transform:uppercase;letter-spacing:0.4px;color:var(--text);}
+  .items-actions{display:flex;gap:6px;flex-wrap:wrap;}
+  .items-actions button{
+    background:var(--surface-2);border:1px solid var(--border);color:var(--text);
+    padding:8px 10px;border-radius:7px;font-size:12.5px;cursor:pointer;
+  }
+
+  table{width:100%;border-collapse:collapse;}
+  th{text-align:left;font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;padding:6px 4px;border-bottom:1px solid var(--border);}
+  td{padding:9px 4px;border-bottom:1px solid var(--border);font-size:13.5px;}
+  td.mono{font-family:var(--font-mono);letter-spacing:0.3px;}
+  .qty-cell{display:flex;align-items:center;gap:8px;}
+  .qty-btn{
+    width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);
+    color:var(--text);font-size:16px;cursor:pointer;line-height:1;
+  }
+  .del-btn{background:none;border:none;color:var(--danger);font-size:15px;cursor:pointer;}
+  .empty{color:var(--text-dim);font-size:14px;text-align:center;padding:18px 4px;}
+
+  .danger-link{background:none;border:none;color:var(--danger);font-size:12.5px;cursor:pointer;margin-top:10px;padding:4px;text-decoration:underline;}
+
+  .hist-actions{display:flex;gap:6px;}
+  .hist-icon-btn{
+    width:30px;height:30px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);
+    color:var(--text);font-size:15px;cursor:pointer;line-height:1;
+  }
+  .hist-icon-btn.hist-del{color:var(--danger);border-color:var(--danger);}
+  .history-modal-box{
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;
+    max-height:65vh;overflow-y:auto;
+  }
+  .history-modal-box h2{font-family:var(--font-display);font-size:15px;margin:0 0 12px;text-transform:uppercase;letter-spacing:0.4px;color:var(--accent);}
+
+  .mode-toggle{display:flex;gap:8px;margin-bottom:12px;}
+  .mode-btn{flex:1;background:var(--surface-2);border:1px solid var(--border);color:var(--text-dim);padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;}
+  .mode-btn.active{background:var(--accent);color:#1A1400;border-color:var(--accent);}
+
+  .toast{
+    position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);
+    background:var(--surface-2);border:1px solid var(--border);color:var(--text);
+    padding:11px 18px;border-radius:30px;font-size:14px;font-weight:600;
+    opacity:0;transition:all 0.25s ease;pointer-events:none;z-index:50;max-width:88%;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0);}
+  .toast.success{border-color:var(--success);color:var(--success);}
+  .toast.error{border-color:var(--danger);color:var(--danger);}
+
+  .camera-modal{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:100;display:flex;align-items:center;justify-content:center;}
+  .camera-modal-inner{position:relative;width:100%;max-width:480px;padding:16px;}
+  video{width:100%;border-radius:10px;background:#000;}
+  .camera-frame{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:70%;height:110px;border:2px solid var(--accent);border-radius:8px;pointer-events:none;
+  }
+  #closeCameraBtn{
+    display:block;margin:14px auto 0;background:var(--danger);color:#fff;border:none;
+    padding:10px 22px;border-radius:8px;font-weight:700;cursor:pointer;
+  }
+
+  #loadingScreen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:14px;z-index:200;}
+</style>
+</head>
+<body>
+
+<div id="loadingScreen">Loading saved data...</div>
+
+<div class="app">
+  <header class="topbar">
+    <div class="barcode-stripe"></div>
+    <div class="topbar-inner">
+      <h1>గోడౌన్ స్కానర్<span class="sub">Warehouse → Store Barcode Scanner</span></h1>
+    </div>
+    <div class="tab-row">
+      <button class="tab-btn active" id="tabScanBtn">📷 Scan</button>
+      <button class="tab-btn" id="tabHistoryBtn">📜 History</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="scanView">
+      <section class="store-panel">
+        <label>Section</label>
+        <select id="sectionSelect"></select>
+
+        <label class="spaced">Store</label>
+        <div class="store-row">
+          <select id="storeSelect"></select>
+          <button class="icon-btn" id="manageStoresBtn" title="Manage stores">⚙</button>
+        </div>
+
+        <div class="person-row">
+          <label for="personIdInput">Scan చేసే Person ID</label>
+          <input type="text" id="personIdInput" placeholder="మీ ID number enter చేయండి" autocomplete="off" />
+        </div>
+
+        <div class="manage-stores hidden" id="manageStores">
+          <div class="manage-add-row">
+            <input type="text" id="newStoreInput" placeholder="కొత్త store పేరు" autocomplete="off" />
+            <button class="btn-small" id="addStoreBtn">+ Add</button>
+          </div>
+          <div id="storeListManage"></div>
+        </div>
+      </section>
+
+      <section class="scan-panel">
+        <label>Scan Barcode</label>
+        <div class="scan-row">
+          <input type="text" id="barcodeInput" placeholder="ముందు Section select చేయండి" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" disabled />
+          <button id="addBtn" disabled>➕</button>
+        </div>
+        <button class="camera-btn" id="cameraBtn" disabled>📷 Camera Scan</button>
+        <p class="hint" id="cameraHint">Camera scan ఈ file ని phone browser లో direct గా (download చేసి) open చేస్తే బాగా పని చేస్తుంది. Bluetooth/USB barcode scanner ఉంటే పైన input box లో నేరుగా scan చేయొచ్చు.</p>
+        <div class="last-scan-card hidden" id="lastScanCard">
+          <span class="last-scan-label">✓ ఇప్పుడే Scan అయింది</span>
+          <span class="last-scan-code mono" id="lastScanCode"></span>
+          <span class="last-scan-qty" id="lastScanQty"></span>
+        </div>
+      </section>
+
+      <section class="summary-bar" id="summaryBar"></section>
+
+      <section class="items-panel">
+        <div class="items-header">
+          <h2 id="itemsTitle">Items</h2>
+          <div class="items-actions">
+            <button id="exportCurrentBtn">⬇ CSV (ఇది)</button>
+            <button id="exportAllBtn">⬇ CSV (అన్నీ - ZIP)</button>
+          </div>
+        </div>
+        <div id="itemsTable"></div>
+        <button class="danger-link" id="clearComboBtn">🗑 ఈ scan data clear చేయి</button>
+      </section>
+    </div>
+
+    <div id="historyView" class="hidden">
+      <section>
+        <label>ఎలా చూడాలి?</label>
+        <div class="mode-toggle">
+          <button class="mode-btn active" id="modeSectionBtn">Section వారీగా</button>
+          <button class="mode-btn" id="modeStoreBtn">Store వారీగా</button>
+        </div>
+        <select id="historyFilterSelect"></select>
+      </section>
+      <section>
+        <div class="items-header"><h2>Export History</h2></div>
+        <div id="historyResults"></div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="camera-modal hidden" id="cameraModal">
+    <div class="camera-modal-inner">
+      <video id="video" autoplay playsinline muted></video>
+      <div class="camera-frame"></div>
+      <button id="closeCameraBtn">✕ Close Camera</button>
+    </div>
+  </div>
+
+  <div class="camera-modal hidden" id="historyItemsModal">
+    <div class="camera-modal-inner">
+      <div class="history-modal-box">
+        <h2 id="historyModalTitle"></h2>
+        <div id="historyModalTable"></div>
+      </div>
+      <button id="closeHistoryModalBtn">✕ Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const STORAGE_KEY = 'warehouse-scanner-local';
+  const STORES_CACHE_KEY = 'warehouse-scanner-stores-cache';
+  const HISTORY_CACHE_KEY = 'warehouse-scanner-history-cache';
+  const DEFAULT_STORES = ['SSM NLR','SSM TPT','SSM VJA','SSM GNT','SSM RJY','SSM ONG','SSM KDP','KPS NLR','KPS TPT','KPS RJY','KPS VJA','NRLH'];
+  const SECTIONS = ['SAREES','PATTU','MENS','KIDS','LADIES','BEDSHEET','IMITATION'];
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAzUS2AMrG3nH3CZaSuOWXzF3JqsNI2QbM",
+    authDomain: "warehouse-scanner-54ee1.firebaseapp.com",
+    databaseURL: "https://warehouse-scanner-54ee1-default-rtdb.firebaseio.com",
+    projectId: "warehouse-scanner-54ee1",
+    storageBucket: "warehouse-scanner-54ee1.firebasestorage.app",
+    messagingSenderId: "550903745054",
+    appId: "1:550903745054:web:18efa4fbe53df30469fc0f"
+  };
+  let fbDb = null;
+  let fbReady = false;
+
+  // state.stores and state.history are SHARED (synced live via Firebase across all phones).
+  // state.scans and state.meta are LOCAL ONLY (per-device, never synced) — live scanning stays independent per phone.
+  let state = { stores: [], scans: {}, meta: {}, history: [], currentSection: null, currentStore: null };
+  let currentSection = null;
+  let currentStore = null;
+  let saveTimeout = null;
+  let historyMode = 'section';
+
+  function comboKey(section, store){ return `${section}||${store}`; }
+  function currentKey(){ return (currentSection && currentStore) ? comboKey(currentSection, currentStore) : null; }
+
+  const hasClaudeStorage = (typeof window.storage !== 'undefined') && window.storage && typeof window.storage.get === 'function';
+
+  async function storageGet(key){
+    if(hasClaudeStorage){
+      return await window.storage.get(key, false);
+    }
+    try{
+      const v = localStorage.getItem(key);
+      return v ? { key, value: v, shared:false } : null;
+    }catch(e){ return null; }
+  }
+  async function storageSet(key, value){
+    if(hasClaudeStorage){
+      return await window.storage.set(key, value, false);
+    }
+    try{
+      localStorage.setItem(key, value);
+      return { key, value, shared:false };
+    }catch(e){ return null; }
+  }
+
+  // ---------- Local-only storage (scans, meta, current selections) ----------
+  async function loadState(){
+    try{
+      const res = await storageGet(STORAGE_KEY);
+      if(res && res.value){
+        const parsed = JSON.parse(res.value);
+        if(parsed.scans) state.scans = parsed.scans;
+        if(parsed.meta) state.meta = parsed.meta;
+        if(parsed.currentSection) state.currentSection = parsed.currentSection;
+        if(parsed.currentStore) state.currentStore = parsed.currentStore;
+      }
+    }catch(e){
+      console.log('No saved local data yet (first run) or load error:', e);
+    }
+  }
+  function saveState(){
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(async ()=>{
+      try{
+        const localOnly = {
+          scans: state.scans, meta: state.meta,
+          currentSection: state.currentSection, currentStore: state.currentStore
+        };
+        await storageSet(STORAGE_KEY, JSON.stringify(localOnly));
+      }catch(e){
+        console.error('Save failed', e);
+        showToast('Save avvaledu, malli try chestundi', 'error');
+      }
+    }, 350);
+  }
+
+  // ---------- Shared storage (stores, history) via Firebase, with local cache fallback ----------
+  async function loadCachedSharedState(){
+    try{
+      const s = await storageGet(STORES_CACHE_KEY);
+      if(s && s.value) state.stores = JSON.parse(s.value);
+    }catch(e){}
+    try{
+      const h = await storageGet(HISTORY_CACHE_KEY);
+      if(h && h.value) state.history = JSON.parse(h.value);
+    }catch(e){}
+  }
+
+  function initFirebaseSync(){
+    try{
+      if(!window.firebase){ throw new Error('Firebase SDK not loaded'); }
+      firebase.initializeApp(firebaseConfig);
+      fbDb = firebase.database();
+
+      fbDb.ref('stores').on('value', snapshot=>{
+        const val = snapshot.val();
+        if(val && Array.isArray(val) && val.length>0){
+          state.stores = val;
+        } else if(!fbReady){
+          // First ever connection, nothing in Firebase yet — seed defaults
+          fbDb.ref('stores').set(DEFAULT_STORES.slice());
+          state.stores = DEFAULT_STORES.slice();
+        }
+        fbReady = true;
+        storageSet(STORES_CACHE_KEY, JSON.stringify(state.stores));
+        renderStoreOptions();
+        renderManageStores();
+        renderSectionOptions();
+      }, err=>{
+        console.error('stores sync error', err);
+        showToast('Shared sync అందుబాటులో లేదు (offline?), local data వాడుతోంది', 'error');
+      });
+
+      fbDb.ref('history').on('value', snapshot=>{
+        const val = snapshot.val() || {};
+        state.history = Object.keys(val).map(id => Object.assign({id}, val[id]));
+        storageSet(HISTORY_CACHE_KEY, JSON.stringify(state.history));
+        renderStoreOptions();
+        renderSectionOptions();
+        const historyView = document.getElementById('historyView');
+        if(historyView && !historyView.classList.contains('hidden')){
+          renderHistoryResults();
+        }
+      }, err=>{
+        console.error('history sync error', err);
+      });
+    }catch(e){
+      console.error('Firebase init failed', e);
+      showToast('Shared sync setup avvaledu, local data మాత్రమే వాడుతోంది', 'error');
+    }
+  }
+
+  // ---------- Helpers ----------
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function todayStr(){
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+  let toastTimeout;
+  function showToast(msg, type){
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = `toast show ${type||'success'}`;
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(()=>{ el.className='toast'; }, 1700);
+  }
+  function playBeep(){
+    try{
+      const ctx = new (window.AudioContext||window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.frequency.value = 1300;
+      osc.type = 'square';
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.07);
+    }catch(e){}
+  }
+  function showLastScan(code, qty){
+    const card = document.getElementById('lastScanCard');
+    document.getElementById('lastScanCode').textContent = code;
+    document.getElementById('lastScanQty').textContent = `Quantity: ${qty}`;
+    card.classList.remove('hidden');
+    card.classList.remove('flash');
+    void card.offsetWidth;
+    card.classList.add('flash');
+  }
+  function currentPersonId(){
+    return document.getElementById('personIdInput').value.trim();
+  }
+  function itemCountForStore(store){
+    let count = 0;
+    SECTIONS.forEach(sec=>{
+      const key = comboKey(sec, store);
+      if(state.scans[key]) count += Object.keys(state.scans[key]).length;
+    });
+    return count;
+  }
+  function itemCountForSection(section){
+    let count = 0;
+    state.stores.forEach(store=>{
+      const key = comboKey(section, store);
+      if(state.scans[key]) count += Object.keys(state.scans[key]).length;
+    });
+    return count;
+  }
+
+  // ---------- Store management (shared via Firebase) ----------
+  function addStore(){
+    const input = document.getElementById('newStoreInput');
+    const name = input.value.trim();
+    if(!name) return;
+    if(state.stores.includes(name)){ showToast('ఈ store already ఉంది', 'error'); return; }
+    const newList = [...state.stores, name];
+    input.value = '';
+    if(fbDb){
+      fbDb.ref('stores').set(newList).then(()=>{
+        document.getElementById('storeSelect').value = name;
+        state.currentStore = name;
+        saveState();
+        updateScanEnabled();
+        showToast(`✓ Store add ayindi: ${name}`, 'success');
+      }).catch(e=>{ console.error(e); showToast('Store add avvaledu (offline?)', 'error'); });
+    } else {
+      state.stores = newList;
+      renderStoreOptions();
+      renderManageStores();
+      document.getElementById('storeSelect').value = name;
+      state.currentStore = name;
+      saveState();
+      updateScanEnabled();
+      showToast(`✓ Store add ayindi (local only, sync లేదు)`, 'success');
+    }
+  }
+  function deleteStore(name){
+    if(!confirm(`"${name}" store ni mariyu daani scan data anni delete cheyala?`)) return;
+    const newList = state.stores.filter(s=>s!==name);
+    SECTIONS.forEach(sec=>{
+      const key = comboKey(sec, name);
+      delete state.scans[key];
+      delete state.meta[key];
+    });
+    if(currentStore===name){ currentStore = null; state.currentStore = null; }
+    saveState();
+    if(fbDb){
+      fbDb.ref('stores').set(newList).catch(e=>{ console.error(e); showToast('Delete avvaledu (offline?)', 'error'); });
+    } else {
+      state.stores = newList;
+      renderStoreOptions();
+      renderSectionOptions();
+      renderManageStores();
+    }
+    updateScanEnabled();
+  }
+  function renderStoreOptions(){
+    const sel = document.getElementById('storeSelect');
+    const prev = state.currentStore;
+    sel.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = state.stores.length ? '-- Store select చేయండి --' : '-- ముందు Store add చేయండి --';
+    sel.appendChild(placeholder);
+    state.stores.forEach(s=>{
+      const opt = document.createElement('option');
+      opt.value = s;
+      opt.textContent = `${s} (${itemCountForStore(s)} items)`;
+      sel.appendChild(opt);
+    });
+    sel.value = (prev && state.stores.includes(prev)) ? prev : '';
+  }
+  function renderManageStores(){
+    const el = document.getElementById('storeListManage');
+    if(state.stores.length===0){
+      el.innerHTML = '<p class="empty small">ఇంకా stores add చేయలేదు.</p>';
+      return;
+    }
+    el.innerHTML = state.stores.map(s=>`
+      <div class="manage-row">
+        <span>${escapeHtml(s)}</span>
+        <button class="del-btn" data-store="${escapeHtml(s)}">✕</button>
+      </div>
+    `).join('');
+    el.querySelectorAll('button[data-store]').forEach(btn=>{
+      btn.addEventListener('click', ()=> deleteStore(btn.getAttribute('data-store')));
+    });
+  }
+
+  // ---------- Section options ----------
+  function renderSectionOptions(){
+    const sel = document.getElementById('sectionSelect');
+    const prev = state.currentSection;
+    sel.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = '-- Section select చేయండి --';
+    sel.appendChild(placeholder);
+    SECTIONS.forEach(sec=>{
+      const opt = document.createElement('option');
+      opt.value = sec;
+      opt.textContent = `${sec} (${itemCountForSection(sec)} items)`;
+      sel.appendChild(opt);
+    });
+    sel.value = (prev && SECTIONS.includes(prev)) ? prev : '';
+  }
+
+  // ---------- Scan gating ----------
+  function onPersonIdChange(){
+    const personId = currentPersonId();
+    const key = currentKey();
+    if(key){
+      if(!state.meta[key]) state.meta[key] = {};
+      state.meta[key].personId = personId;
+      saveState();
+    }
+    const input = document.getElementById('barcodeInput');
+    const addBtn = document.getElementById('addBtn');
+    const camBtn = document.getElementById('cameraBtn');
+    const enabled = !!key && !!personId;
+    input.disabled = !enabled;
+    addBtn.disabled = !enabled;
+    camBtn.disabled = !enabled || !barcodeDetectorSupported;
+    input.placeholder = !currentSection ? 'ముందు Section select చేయండి' : (!currentStore ? 'ముందు Store select చేయండి' : (!personId ? 'ముందు Person ID enter చేయండి' : 'Barcode scan/type చేసి Enter నొక్కండి'));
+  }
+
+  function updateScanEnabled(){
+    currentSection = document.getElementById('sectionSelect').value || null;
+    currentStore = document.getElementById('storeSelect').value || null;
+    const personInput = document.getElementById('personIdInput');
+    const key = currentKey();
+
+    if(key){
+      const meta = state.meta[key];
+      personInput.value = meta && meta.personId ? meta.personId : '';
+    } else {
+      personInput.value = '';
+    }
+
+    const input = document.getElementById('barcodeInput');
+    const addBtn = document.getElementById('addBtn');
+    const camBtn = document.getElementById('cameraBtn');
+    const personId = currentPersonId();
+    const enabled = !!key && !!personId;
+
+    input.disabled = !enabled;
+    addBtn.disabled = !enabled;
+    camBtn.disabled = !enabled || !barcodeDetectorSupported;
+
+    if(!currentSection){
+      input.placeholder = 'ముందు Section select చేయండి';
+    } else if(!currentStore){
+      input.placeholder = 'ముందు Store select చేయండి';
+    } else if(!personId){
+      input.placeholder = 'ముందు Person ID enter చేయండి';
+    } else {
+      input.placeholder = 'Barcode scan/type చేసి Enter నొక్కండి';
+    }
+
+    document.getElementById('itemsTitle').textContent = key ? `Items — ${currentSection} @ ${currentStore}` : 'Items';
+    if(enabled) input.focus();
+    renderTable();
+  }
+
+  function handleScan(rawCode){
+    const code = String(rawCode).trim();
+    if(!code) return;
+    if(!currentSection){ showToast('ముందు Section select చేయండి', 'error'); return; }
+    if(!currentStore){ showToast('ముందు Store select చేయండి', 'error'); return; }
+    if(!currentPersonId()){ showToast('ముందు Person ID enter చేయండి', 'error'); return; }
+    const key = currentKey();
+    if(!state.scans[key]) state.scans[key] = {};
+    const existing = state.scans[key][code];
+    if(existing){
+      existing.qty += 1;
+      existing.last = Date.now();
+    } else {
+      state.scans[key][code] = { qty: 1, last: Date.now() };
+    }
+    playBeep();
+    const qtyNow = state.scans[key][code].qty;
+    showLastScan(code, qtyNow);
+    showToast(`✓ ${code} — qty ${qtyNow}`, 'success');
+    saveState();
+    renderSectionOptions();
+    renderStoreOptions();
+    document.getElementById('sectionSelect').value = currentSection;
+    document.getElementById('storeSelect').value = currentStore;
+    renderTable();
+  }
+
+  function submitScan(){
+    const input = document.getElementById('barcodeInput');
+    const code = input.value.trim();
+    input.value = '';
+    if(code) handleScan(code);
+    input.focus();
+  }
+
+  function adjustQty(key, code, delta){
+    const entry = state.scans[key] && state.scans[key][code];
+    if(!entry) return;
+    entry.qty += delta;
+    if(entry.qty <= 0) delete state.scans[key][code];
+    saveState();
+    renderSectionOptions();
+    renderStoreOptions();
+    document.getElementById('sectionSelect').value = currentSection;
+    document.getElementById('storeSelect').value = currentStore;
+    renderTable();
+  }
+  function deleteRow(key, code){
+    if(state.scans[key]) delete state.scans[key][code];
+    saveState();
+    renderSectionOptions();
+    renderStoreOptions();
+    document.getElementById('sectionSelect').value = currentSection;
+    document.getElementById('storeSelect').value = currentStore;
+    renderTable();
+  }
+  function clearCurrentCombo(){
+    const key = currentKey();
+    if(!key) return;
+    if(!confirm(`"${currentSection} @ ${currentStore}" scan data anni delete avthundi. Confirm?`)) return;
+    delete state.scans[key];
+    saveState();
+    renderSectionOptions();
+    renderStoreOptions();
+    renderTable();
+  }
+
+  // ---------- Rendering: items table ----------
+  function renderTable(){
+    const container = document.getElementById('itemsTable');
+    const key = currentKey();
+    if(!key){
+      container.innerHTML = '<p class="empty">Section మరియు Store select చేసిన తర్వాత scanned items ఇక్కడ కనిపిస్తాయి.</p>';
+      updateSummary();
+      return;
+    }
+    const data = state.scans[key] || {};
+    const entries = Object.entries(data).sort((a,b)=> b[1].last - a[1].last);
+    if(entries.length===0){
+      container.innerHTML = '<p class="empty">ఇంకా ఏ item scan చేయలేదు.</p>';
+      updateSummary();
+      return;
+    }
+    container.innerHTML = `
+      <table>
+        <thead><tr><th>Barcode</th><th>Qty</th><th></th></tr></thead>
+        <tbody>
+          ${entries.map(([code,v])=>`
+            <tr>
+              <td class="mono">${escapeHtml(code)}</td>
+              <td>
+                <div class="qty-cell">
+                  <button class="qty-btn" data-action="dec" data-code="${escapeHtml(code)}">−</button>
+                  <span>${v.qty}</span>
+                  <button class="qty-btn" data-action="inc" data-code="${escapeHtml(code)}">+</button>
+                </div>
+              </td>
+              <td><button class="del-btn" data-action="del" data-code="${escapeHtml(code)}">🗑</button></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+    container.querySelectorAll('button[data-action]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const code = btn.getAttribute('data-code');
+        const action = btn.getAttribute('data-action');
+        if(action==='inc') adjustQty(key, code, 1);
+        if(action==='dec') adjustQty(key, code, -1);
+        if(action==='del') deleteRow(key, code);
+      });
+    });
+    updateSummary();
+  }
+
+  function updateSummary(){
+    const bar = document.getElementById('summaryBar');
+    const key = currentKey();
+    const data = key ? (state.scans[key] || {}) : {};
+    const curItems = Object.keys(data).length;
+    const curQty = Object.values(data).reduce((a,v)=>a+v.qty,0);
+    bar.innerHTML = `
+      <div class="stat"><span class="stat-num">${state.stores.length}</span><span class="stat-label">Stores</span></div>
+      <div class="stat"><span class="stat-num">${curItems}</span><span class="stat-label">Unique Items</span></div>
+      <div class="stat"><span class="stat-num">${curQty}</span><span class="stat-label">Total Qty</span></div>
+    `;
+  }
+
+  // ---------- CSV export ----------
+  function dataRowsForKey(key){
+    const data = state.scans[key] || {};
+    return Object.entries(data).map(([barcode,v]) => [barcode, v.qty]);
+  }
+  function csvEscape(v){
+    const s = String(v);
+    if(/[",\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  }
+  function toCSV(rows){
+    const lines = ['Barcode,Quantity'];
+    rows.forEach(([code,qty]) => lines.push(`${csvEscape(code)},${qty}`));
+    return lines.join('\r\n');
+  }
+  function downloadBlob(content, filename, mime){
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(()=> URL.revokeObjectURL(url), 2000);
+  }
+  function logHistory(section, store){
+    const key = comboKey(section, store);
+    const rows = dataRowsForKey(key);
+    const items = rows.length;
+    const qty = rows.reduce((a,r)=>a+r[1],0);
+    const meta = state.meta[key] || {};
+    const now = new Date();
+    const entry = {
+      section, store,
+      personId: meta.personId || '',
+      date: now.toLocaleDateString('en-IN'),
+      time: now.toLocaleTimeString('en-IN'),
+      timestamp: now.getTime(),
+      itemCount: items,
+      totalQty: qty,
+      items: rows
+    };
+    if(fbDb){
+      fbDb.ref('history').push(entry).catch(e=>{
+        console.error(e);
+        showToast('History sync avvaledu (offline?) — CSV download ayyindi', 'error');
+      });
+    } else {
+      entry.id = `h_${now.getTime()}_${Math.random().toString(36).slice(2,7)}`;
+      state.history.push(entry);
+    }
+  }
+  function exportCurrent(){
+    if(!currentSection || !currentStore){ showToast('Section & Store select చేయండి', 'error'); return; }
+    const key = currentKey();
+    if(!state.scans[key] || Object.keys(state.scans[key]).length===0){
+      showToast('ఇందులో items లేవు', 'error');
+      return;
+    }
+    const csv = toCSV(dataRowsForKey(key));
+    const safeSection = currentSection.replace(/\s+/g,'-');
+    const safeStore = currentStore.replace(/\s+/g,'-');
+    downloadBlob(csv, `${safeSection}_${safeStore}_${todayStr()}.csv`, 'text/csv;charset=utf-8;');
+    logHistory(currentSection, currentStore);
+    showToast('✓ CSV export + history save ayindi', 'success');
+  }
+  async function exportAll(){
+    const combos = [];
+    SECTIONS.forEach(sec=>{
+      state.stores.forEach(store=>{
+        const key = comboKey(sec, store);
+        if(state.scans[key] && Object.keys(state.scans[key]).length>0) combos.push([sec, store]);
+      });
+    });
+    if(combos.length===0){ showToast('Export చేయడానికి data లేదు', 'error'); return; }
+    try{
+      const zip = new JSZip();
+      combos.forEach(([sec, store])=>{
+        const key = comboKey(sec, store);
+        const csv = toCSV(dataRowsForKey(key));
+        const safeSection = sec.replace(/\s+/g,'-');
+        const safeStore = store.replace(/\s+/g,'-');
+        zip.file(`${safeSection}_${safeStore}.csv`, csv);
+      });
+      const blob = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `All_scan_${todayStr()}.zip`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(()=> URL.revokeObjectURL(url), 2000);
+      combos.forEach(([sec, store])=> logHistory(sec, store));
+      showToast('✓ అన్ని CSV (zip) + history save ayyayi', 'success');
+    }catch(e){
+      console.error(e);
+      showToast('Zip create avvaledu', 'error');
+    }
+  }
+
+  // ---------- History view ----------
+  function setModeButtons(){
+    document.getElementById('modeSectionBtn').classList.toggle('active', historyMode==='section');
+    document.getElementById('modeStoreBtn').classList.toggle('active', historyMode==='store');
+  }
+  function renderHistoryFilterOptions(){
+    const sel = document.getElementById('historyFilterSelect');
+    sel.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = historyMode==='section' ? '-- Section select చేయండి --' : '-- Store select చేయండి --';
+    sel.appendChild(placeholder);
+    const list = historyMode==='section' ? SECTIONS : state.stores;
+    list.forEach(v=>{
+      const opt = document.createElement('option');
+      opt.value = v; opt.textContent = v;
+      sel.appendChild(opt);
+    });
+  }
+  function renderHistoryResults(){
+    const container = document.getElementById('historyResults');
+    const val = document.getElementById('historyFilterSelect').value;
+    if(!val){
+      container.innerHTML = `<p class="empty">${historyMode==='section' ? 'Section' : 'Store'} select చేయండి.</p>`;
+      return;
+    }
+    const filtered = state.history
+      .filter(h => historyMode==='section' ? h.section===val : h.store===val)
+      .sort((a,b)=> b.timestamp - a.timestamp);
+    if(filtered.length===0){
+      container.innerHTML = '<p class="empty">ఇంకా ఏ export జరగలేదు.</p>';
+      return;
+    }
+    const otherLabel = historyMode==='section' ? 'Store' : 'Section';
+    container.innerHTML = `
+      <table>
+        <thead><tr><th>${otherLabel}</th><th>Date</th><th>Time</th><th>ID</th><th>Qty</th><th></th></tr></thead>
+        <tbody>
+          ${filtered.map((h,idx)=>`
+            <tr>
+              <td>${escapeHtml(historyMode==='section' ? h.store : h.section)}</td>
+              <td>${escapeHtml(h.date)}</td>
+              <td>${escapeHtml(h.time)}</td>
+              <td class="mono">${escapeHtml(h.personId)}</td>
+              <td>${h.totalQty}</td>
+              <td>
+                <div class="hist-actions">
+                  <button class="hist-icon-btn" data-hact="view" data-hid="${escapeHtml(h.id || ('idx_'+idx))}" title="చూడు">👁</button>
+                  <button class="hist-icon-btn" data-hact="dl" data-hid="${escapeHtml(h.id || ('idx_'+idx))}" title="Download">⬇</button>
+                  <button class="hist-icon-btn hist-del" data-hact="del" data-hid="${escapeHtml(h.id || ('idx_'+idx))}" title="Delete">🗑</button>
+                </div>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+    container.querySelectorAll('button[data-hact]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const hid = btn.getAttribute('data-hid');
+        const entry = state.history.find(h => (h.id || '') === hid);
+        if(!entry){ showToast('ఈ record దొరకలేదు', 'error'); return; }
+        const act = btn.getAttribute('data-hact');
+        if(act==='view') viewHistoryItems(entry);
+        else if(act==='dl') downloadHistoryItems(entry);
+        else if(act==='del') deleteHistoryEntry(entry);
+      });
+    });
+  }
+
+  function deleteHistoryEntry(entry){
+    if(!confirm(`${entry.section} @ ${entry.store} — ${entry.date} ${entry.time} record ni delete cheyala? (ఇది history నుండి మాత్రమే తీసేస్తుంది, scan data కి సంబంధం లేదు)`)) return;
+    if(fbDb && entry.id){
+      fbDb.ref('history/' + entry.id).remove().then(()=>{
+        showToast('✓ Record delete ayindi', 'success');
+      }).catch(e=>{ console.error(e); showToast('Delete avvaledu (offline?)', 'error'); });
+    } else {
+      state.history = state.history.filter(h => (h.id || '') !== (entry.id || ''));
+      renderHistoryResults();
+      showToast('✓ Record delete ayindi', 'success');
+    }
+  }
+
+  function viewHistoryItems(entry){
+    const modal = document.getElementById('historyItemsModal');
+    const title = document.getElementById('historyModalTitle');
+    const body = document.getElementById('historyModalTable');
+    title.textContent = `${entry.section} @ ${entry.store} — ${entry.date} ${entry.time} (ID: ${entry.personId || '-'})`;
+    const rows = entry.items || [];
+    if(rows.length===0){
+      body.innerHTML = '<p class="empty">ఈ పాత record కి item వివరాలు save కాలేదు.</p>';
+    } else {
+      body.innerHTML = `
+        <table>
+          <thead><tr><th>Barcode</th><th>Quantity</th></tr></thead>
+          <tbody>
+            ${rows.map(([code,qty])=>`<tr><td class="mono">${escapeHtml(code)}</td><td>${qty}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+    modal.classList.remove('hidden');
+  }
+
+  function downloadHistoryItems(entry){
+    const rows = entry.items || [];
+    if(rows.length===0){ showToast('ఈ record కి item వివరాలు లేవు, download చేయలేం', 'error'); return; }
+    const csv = toCSV(rows);
+    const safeSection = entry.section.replace(/\s+/g,'-');
+    const safeStore = entry.store.replace(/\s+/g,'-');
+    const safeTime = entry.time.replace(/[:\s]/g,'-');
+    downloadBlob(csv, `${safeSection}_${safeStore}_${entry.date.replace(/\//g,'-')}_${safeTime}.csv`, 'text/csv;charset=utf-8;');
+    showToast('✓ Download అయింది', 'success');
+  }
+
+  // ---------- Tabs ----------
+  function switchTab(tab){
+    const scanView = document.getElementById('scanView');
+    const historyView = document.getElementById('historyView');
+    const tabScan = document.getElementById('tabScanBtn');
+    const tabHistory = document.getElementById('tabHistoryBtn');
+    if(tab==='scan'){
+      scanView.classList.remove('hidden');
+      historyView.classList.add('hidden');
+      tabScan.classList.add('active');
+      tabHistory.classList.remove('active');
+    } else {
+      scanView.classList.add('hidden');
+      historyView.classList.remove('hidden');
+      tabHistory.classList.add('active');
+      tabScan.classList.remove('active');
+      renderHistoryFilterOptions();
+      renderHistoryResults();
+    }
+  }
+
+  // ---------- Camera scanning ----------
+  let barcodeDetectorSupported = false;
+  let barcodeDetector = null;
+  if('BarcodeDetector' in window){
+    try{
+      barcodeDetector = new window.BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128','code_39','codabar','itf']});
+      barcodeDetectorSupported = true;
+    }catch(e){ barcodeDetectorSupported = false; }
+  }
+  let cameraStream = null;
+  let scanningActive = false;
+
+  async function startCameraScan(){
+    if(!barcodeDetectorSupported){
+      showToast('ఈ browser లో camera scan support లేదు', 'error');
+      return;
+    }
+    try{
+      cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      const video = document.getElementById('video');
+      video.srcObject = cameraStream;
+      document.getElementById('cameraModal').classList.remove('hidden');
+      scanningActive = true;
+      requestAnimationFrame(cameraScanLoop);
+    }catch(e){
+      console.error('Camera error:', e);
+      showToast(`Camera error: ${e.name || 'Unknown'} — ${(e.message||'').slice(0,60)}`, 'error');
+    }
+  }
+  function cameraScanLoop(){
+    if(!scanningActive) return;
+    const video = document.getElementById('video');
+    if(video.readyState === 4){
+      barcodeDetector.detect(video).then(codes=>{
+        if(codes.length>0 && scanningActive){
+          handleScan(codes[0].rawValue);
+          scanningActive = false;
+          setTimeout(()=>{
+            scanningActive = true;
+            if(!document.getElementById('cameraModal').classList.contains('hidden')){
+              requestAnimationFrame(cameraScanLoop);
+            }
+          }, 1100);
+          return;
+        }
+        requestAnimationFrame(cameraScanLoop);
+      }).catch(()=> requestAnimationFrame(cameraScanLoop));
+    } else {
+      requestAnimationFrame(cameraScanLoop);
+    }
+  }
+  function stopCameraScan(){
+    scanningActive = false;
+    if(cameraStream){ cameraStream.getTracks().forEach(t=>t.stop()); cameraStream=null; }
+    document.getElementById('cameraModal').classList.add('hidden');
+  }
+
+  // ---------- Init ----------
+  async function init(){
+    await loadState();
+    await loadCachedSharedState();
+    if(state.stores.length===0){
+      state.stores = DEFAULT_STORES.slice();
+    }
+    renderSectionOptions();
+    renderStoreOptions();
+    document.getElementById('sectionSelect').value = (state.currentSection && SECTIONS.includes(state.currentSection)) ? state.currentSection : '';
+    document.getElementById('storeSelect').value = (state.currentStore && state.stores.includes(state.currentStore)) ? state.currentStore : '';
+    renderManageStores();
+    updateScanEnabled();
+    initFirebaseSync();
+
+    if(!barcodeDetectorSupported){
+      document.getElementById('cameraBtn').style.display = 'none';
+      document.getElementById('cameraHint').textContent = 'ఈ browser కి camera scan support లేదు — typing/hardware scanner వాడండి.';
+    }
+
+    document.getElementById('manageStoresBtn').addEventListener('click', ()=>{
+      document.getElementById('manageStores').classList.toggle('hidden');
+    });
+    document.getElementById('addStoreBtn').addEventListener('click', addStore);
+    document.getElementById('newStoreInput').addEventListener('keydown', e=>{
+      if(e.key==='Enter'){ e.preventDefault(); addStore(); }
+    });
+    document.getElementById('sectionSelect').addEventListener('change', ()=>{
+      state.currentSection = document.getElementById('sectionSelect').value || null;
+      saveState();
+      updateScanEnabled();
+    });
+    document.getElementById('storeSelect').addEventListener('change', ()=>{
+      state.currentStore = document.getElementById('storeSelect').value || null;
+      saveState();
+      updateScanEnabled();
+    });
+    document.getElementById('personIdInput').addEventListener('input', onPersonIdChange);
+    document.getElementById('personIdInput').addEventListener('keydown', e=>{
+      if(e.key==='Enter'){
+        e.preventDefault();
+        if(!document.getElementById('barcodeInput').disabled){
+          document.getElementById('barcodeInput').focus();
+        }
+      }
+    });
+    document.getElementById('barcodeInput').addEventListener('keydown', e=>{
+      if(e.key==='Enter' || e.key==='Tab'){ e.preventDefault(); submitScan(); }
+    });
+    document.getElementById('addBtn').addEventListener('click', submitScan);
+    document.getElementById('exportCurrentBtn').addEventListener('click', exportCurrent);
+    document.getElementById('exportAllBtn').addEventListener('click', exportAll);
+    document.getElementById('clearComboBtn').addEventListener('click', clearCurrentCombo);
+    document.getElementById('cameraBtn').addEventListener('click', startCameraScan);
+    document.getElementById('closeCameraBtn').addEventListener('click', stopCameraScan);
+    document.getElementById('closeHistoryModalBtn').addEventListener('click', ()=>{
+      document.getElementById('historyItemsModal').classList.add('hidden');
+    });
+
+    document.getElementById('tabScanBtn').addEventListener('click', ()=> switchTab('scan'));
+    document.getElementById('tabHistoryBtn').addEventListener('click', ()=> switchTab('history'));
+    document.getElementById('modeSectionBtn').addEventListener('click', ()=>{
+      historyMode = 'section'; setModeButtons(); renderHistoryFilterOptions(); renderHistoryResults();
+    });
+    document.getElementById('modeStoreBtn').addEventListener('click', ()=>{
+      historyMode = 'store'; setModeButtons(); renderHistoryFilterOptions(); renderHistoryResults();
+    });
+    document.getElementById('historyFilterSelect').addEventListener('change', renderHistoryResults);
+
+    document.getElementById('loadingScreen').style.display = 'none';
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
